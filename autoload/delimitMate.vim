@@ -83,7 +83,9 @@ function! s:is_jump(...) "{{{
       return 4
     endif
   elseif a:0 && s:get('expand_cr') && uchar == a:1
-    return 5
+    if s:balance_matchpairs(uchar) <= 0
+      return 5
+    endif
   endif
   return 0
 endfunction "}}}
